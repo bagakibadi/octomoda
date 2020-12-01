@@ -176,7 +176,7 @@ export default {
       const formData = new FormData()
       formData.append('id', localStorage.id)
       formData.append('token', this.otp)
-      if (this.otp === null){
+      if (this.otp.length < 1){
         console.log("kosong")
       } else{
       axios.post('https://devapi.octomoda.tech/verifikasi.php', formData)
