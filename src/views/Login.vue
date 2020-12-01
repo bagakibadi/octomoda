@@ -236,6 +236,16 @@ export default {
               showConfirmButton: false,
               timer: 2000
             })
+            setTimeout(() => {
+              if (res.data.response.status == '0') {
+                localStorage.status = '0'
+                localStorage.token = res.data.response.token
+                localStorage.id = res.data.response.id
+                this.$router.push('/profile')
+              } else{
+                console.log("verifed")
+              }
+            }, 2000);
           } else {
             Swal.fire({
               icon: 'error',

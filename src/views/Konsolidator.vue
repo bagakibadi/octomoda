@@ -173,6 +173,23 @@ export default {
   name: 'Konsolidator',
   components: {
     Navbar
+  },
+  beforeCreate() {
+    console.log('before')
+    if (!localStorage.token && !localStorage.id) {
+      console.log('belom login')
+      this.$router.push('/login')
+    } else{
+      console.log('dahlogin')
+      if (localStorage.status == '0') {
+        console.log('status0')
+        this.$router.push('/profile')
+      } else if (localStorage.status == '1'){
+        this.$router.go('/profile')
+      } else{
+        console.log('dahverif')
+      }
+    }
   }
 }
 </script>

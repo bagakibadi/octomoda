@@ -26,12 +26,12 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="imageprofile">
+                                    <!-- <div class="imageprofile">
                                       <img src="../assets/images/users/user-1.jpg" alt="">
                                       <h1>Bagus Nur solayman</h1>
-                                    </div>
-                                    <!-- <h4 class="mt-0 header-title">Edit Profile</h4>
-                                    <p class="text-muted mb-3">Mohon lengkapi profil anda terlebih dahulu</p> -->
+                                    </div> -->
+                                    <h4 class="mt-0 header-title">Edit Profile</h4>
+                                    <p class="text-muted mb-3">Mohon lengkapi profil anda terlebih dahulu</p>
                                     <form action="">
                                     <div class="row">
                                         <div class="col-lg-12">

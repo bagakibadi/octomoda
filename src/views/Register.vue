@@ -179,6 +179,7 @@ export default {
       if (this.otp.length < 1){
         console.log("kosong")
       } else{
+        console.log('bener')
       axios.post('https://devapi.octomoda.tech/verifikasi.php', formData)
       .then((res) => {
         console.log(res)
