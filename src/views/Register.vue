@@ -176,6 +176,9 @@ export default {
       const formData = new FormData()
       formData.append('id', localStorage.id)
       formData.append('token', this.otp)
+      if (this.otp === null){
+        console.log("kosong")
+      } else{
       axios.post('https://devapi.octomoda.tech/verifikasi.php', formData)
       .then((res) => {
         console.log(res)
@@ -202,6 +205,7 @@ export default {
       .catch((err) => {
         console.log(err)
       })
+      }
       e.preventDefault()
     },
     otps(e) {
