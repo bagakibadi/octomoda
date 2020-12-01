@@ -41,16 +41,18 @@
                       </div>
                       <form
                         class="form-horizontal auth-form my-4"
-                        action="index.html"
+                        @submit.prevent="login"
                       >
                         <div class="form-group">
-                          <label for="username">Username</label>
+                          <label for="username">Email</label>
                           <div class="input-group mb-3">
                             <input
-                              type="text"
+                            required
+                            v-model="email"
+                              type="email"
                               class="form-control"
                               id="username"
-                              placeholder="Enter Username/Email"
+                              placeholder="Enter Email"
                             />
                           </div>
                         </div>
@@ -60,6 +62,8 @@
                           <label for="userpassword">Password</label>
                           <div class="input-group mb-3">
                             <input
+                            required
+                            v-model="password"
                               type="password"
                               class="form-control"
                               id="userpassword"
@@ -75,6 +79,7 @@
                               class="custom-control custom-switch switch-success"
                             >
                               <input
+                              
                                 type="checkbox"
                                 class="custom-control-input"
                                 id="customSwitchSuccess"
@@ -89,7 +94,7 @@
                           <!--end col-->
                           <div class="col-sm-6 text-right">
                             <a
-                              href="auth-recover-pw.html"
+                              href="#"
                               class="text-muted font-13"
                               ><i class="dripicons-lock"></i> Forgot
                               password?</a
@@ -103,7 +108,7 @@
                           <div class="col-12 mt-2">
                             <button
                               class="btn btn-primary btn-block waves-effect waves-light"
-                              type="button"
+                              type="submit"
                             >
                               Log In <i class="fas fa-sign-in-alt ml-1"></i>
                             </button>
@@ -200,7 +205,51 @@
 </template>
 
 <script>
-export default {};
+import axios from 'axios'
+import Swal from 'sweetalert2'
+
+export default {
+  name: 'Login',
+  data() {
+    return {
+      email: null,
+      password: null,
+    }
+  },
+  methods: {
+    login () {
+      const formData = new FormData()
+      formData.append('email', this.email)
+      formData.append('sandi', this.password)
+      axios.post('https://devapi.octomoda.tech/login.php', formData, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+        .then((res) => {
+          console.log(res)
+          if (res.data.response.errcode == '00') {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Login Berhasil',
+              showConfirmButton: false,
+              timer: 2000
+            })
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: res.data.response.pesan + 'Email atau Password Salah',
+            })
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }
+};
 </script>
 
 <style lang="css" scoped>
