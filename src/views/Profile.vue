@@ -31,18 +31,26 @@
                                       <h1>Bagus Nur solayman</h1>
                                     </div> -->
                                     <h4 class="mt-0 header-title">Edit Profile</h4>
-                                    <p class="text-muted mb-3">Mohon lengkapi profil anda terlebih dahulu</p>
+                                    <p class="text-danger mb-3">Mohon lengkapi profil anda terlebih dahulu</p>
                                     <form action="">
                                     <div class="row">
                                         <div class="col-lg-12">
                                           <div class="form-group row">
                                             <label class="col-sm-2 col-form-label text-right">Kategori</label>
                                             <div class="col-sm-10">
-                                              <select class="form-control form-control-lg">
-                                                <option>Supply Chain</option>
+                                              <select v-model="kategori" class="form-control form-control-lg">
+                                                <option value="">Supply Chain</option>
                                                 <option>Demand</option>
                                                 <option>Supporting Business</option>
                                                 <option>Finance</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label text-right">Rayon</label>
+                                            <div class="col-sm-10">
+                                              <select v-model="rayon" class="form-control form-control-lg">
+                                                <option v-for="(items, index) in rayon" :key="index" value="">{{items.keterangan}}</option>
                                               </select>
                                             </div>
                                           </div>
@@ -418,7 +426,9 @@
 </template>
 
 <script>
+// import Axios from 'axios'
 import Navbar from './Dashboard.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Profile',
@@ -434,9 +444,11 @@ export default {
       NaktaNotaris: '',
       fnpwp: '',
       NNpwp: '',
+      kategori: [],
     }
   },
   methods: {
+    
     caktaNotaris(e) {
       const file = e.target.files[0]
       const fr = new FileReader()
@@ -470,6 +482,32 @@ export default {
     removeImage: function () {
       this.image = '';
     }
+  },
+  computed: {
+    ...mapState(['rayon'])
+  },
+  // beforeCreate() {
+  //     const formData = new FormData();
+  //     formData.append('id', localStorage.id)
+  //     formData.append('token', localStorage.token)
+  //     Axios.post('https://devapi.octomoda.tech/getrayon.php', formData)
+  //       .then((res) => {
+  //         console.log(res.data.response.rayon)
+  //         this.rayon = res.data.response.rayon
+  //       })
+  //       .catch((err) => console.log(err))
+  // },
+  mounted() {
+    const rayon = new FormData()
+    rayon.append('id', localStorage.id)
+    rayon.append('token', localStorage.token)
+    this.$store.dispatch('postApi', {
+      url: `getrayon.php`,
+      mutation: "GET_RAYON",
+      data: {
+        rayon
+      }
+    })
   }
 }
 </script>

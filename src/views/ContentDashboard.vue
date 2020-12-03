@@ -104,21 +104,6 @@
                                               <td>System Architect</td>
                                               <td>Edinburgh</td>
                                           </tr>
-                                          <tr>
-                                              <td><button class="btn btn-danger"><i class="mdi mdi-delete-forever"></i></button></td>
-                                              <td>System Architect</td>
-                                              <td>Edinburgh</td>
-                                          </tr>
-                                          <tr>
-                                              <td><button class="btn btn-danger"><i class="mdi mdi-delete-forever"></i></button></td>
-                                              <td>System Architect</td>
-                                              <td>Edinburgh</td>
-                                          </tr>
-                                          <tr>
-                                              <td><button class="btn btn-danger"><i class="mdi mdi-delete-forever"></i></button></td>
-                                              <td>System Architect</td>
-                                              <td>Edinburgh</td>
-                                          </tr>
                                         </tbody>
                                     </table>
     
