@@ -38,142 +38,167 @@
                                           <div class="form-group row">
                                             <label class="col-sm-2 col-form-label text-right">Kategori</label>
                                             <div class="col-sm-10">
-                                              <select v-model="kategori" class="form-control form-control-lg">
-                                                <option value="">Supply Chain</option>
-                                                <option>Demand</option>
-                                                <option>Supporting Business</option>
-                                                <option>Finance</option>
+                                              <select v-model="kategories" class="form-control form-control-lg">
+                                                <option value="" selected> - Pilih Kategori - </option>
+                                                <option :value="item.kode" v-for="(item,index) in kategori" :key="index">{{ item.keterangan }}</option>
                                               </select>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label for="nama" class="col-sm-2 col-form-label text-right">Nama</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control-lg form-control" type="text" placeholder="Enter Nama" id="nama">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label for="namaEnglish" class="col-sm-2 col-form-label text-right">Nama in English</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control-lg form-control" type="text" placeholder="Enter Nama in English" id="namaEnglish">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-2 col-form-label text-right">Rayon</label>
                                             <div class="col-sm-10">
-                                              <select v-model="rayon" class="form-control form-control-lg">
-                                                <option v-for="(items, index) in rayon" :key="index" value="">{{items.keterangan}}</option>
+                                              <select v-model="rayons" class="form-control form-control-lg">
+                                                <option value="" selected> - Pilih Rayon - </option>
+                                                <option :value="item.kode" v-for="(item,index) in rayon" :key="index">{{ item.keterangan }}</option>
                                               </select>
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-right">Nama Asosiasi</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control-lg form-control" type="text" placeholder="Enter Nama Asosiasi" id="namaAsosiasi">
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                              <label for="example-tel-input" class="col-sm-2 col-form-label text-right">NIB</label>
-                                              <div class="col-sm-10">
-                                                  <input class="form-control-lg form-control" type="tel" placeholder="Enter NIB" id="nib">
-                                              </div>
-                                          </div>
-                                          <div class="form-group row">
-                                              <label for="example-tel-input" class="col-sm-2 col-form-label text-right">Kode KBLI</label>
-                                              <div class="col-sm-10">
-                                                  <input class="form-control-lg form-control" type="tel" placeholder="Enter Kode KBLI" id="kbli">
-                                              </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-right">Nama KBLI</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control-lg form-control" type="text" placeholder="Enter Nama Asosiasi" id="namaKbli">
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                              <label for="example-tel-input" class="col-sm-2 col-form-label text-right">No. Telp Kantor</label>
-                                              <div class="col-sm-10">
-                                                  <input class="form-control-lg form-control" type="tel" placeholder="Enter Kode KBLI" id="noTelp">
-                                              </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label for="alamatKantor" class="col-sm-2 col-form-label text-right">Alamat Kantor</label>
-                                            <div class="col-sm-10">
-                                              <textarea class="form-control form-control-lg" rows="2" placeholder="Enter Alamat" id="alamatKantor"></textarea>
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-2 col-form-label text-right">Provinsi</label>
                                             <div class="col-sm-10">
-                                              <select class="form-control form-control-lg">
-                                                <option>Jawa Timur</option>
-                                                <option>Aceh</option>
-                                                <option>Sumatera Utara</option>
-                                                <option>Sumatera Barat</option>
+                                              <select v-model="provinsis" class="form-control form-control-lg">
+                                                <option value="" selected> - Pilih Provinsi - </option>
+                                                <option v-for="(items, index) in provinsi" :key="index" :value="items.kode">{{items.keterangan}}</option>
                                               </select>
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-2 col-form-label text-right">Kabupaten/Kota</label>
                                             <div class="col-sm-10">
-                                              <select class="form-control form-control-lg">
-                                                <option>Surabaya</option>
-                                                <option>Jakarta</option>
+                                              <select class="form-control form-control-lg" v-model="kabupatens">
+                                                <option value="" selected> - Pilih Kabupaten - </option>
+                                                <option v-for="(item, index) in kabupaten" :key="index" :value="item.kode" >{{item.keterangan}}</option>
                                               </select>
                                             </div>
                                           </div>
                                           <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label text-right">Kecamatan</label>
+                                            <div class="col-sm-10">
+                                              <select class="form-control form-control-lg" v-model="kecamatans">
+                                                <option value="" selected> - Pilih Kecamatan - </option>
+                                                <option v-for="(item, index) in kecamatan" :key="index" :value="item.kode" >{{item.keterangan}}</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label text-right">Kelurahan</label>
+                                            <div class="col-sm-10">
+                                              <select class="form-control form-control-lg" v-model="desas">
+                                                <option value="" selected> - Pilih Kelurahan - </option>
+                                                <option v-for="(item, index) in desa" :key="index" :value="item.kode" >{{item.keterangan}}</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label for="alamatLengkap" class="col-sm-2 col-form-label text-right">Alamat Lengkap</label>
+                                            <div class="col-sm-10">
+                                              <textarea class="form-control form-control-lg" rows="2" v-model="alamat" placeholder="Enter Alamat Lengkap" id="alamatLengkap"></textarea>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
                                               <label for="kodePos" class="col-sm-2 col-form-label text-right">Kode Pos</label>
-                                              <div class="col-sm-10">
+                                              <div class="col-sm-3">
                                                   <input class="form-control form-control-lg" type="number" placeholder="Enter Kode Pos" id="kodePos">
                                               </div>
-                                          </div>
-                                          <div class="form-group row">
-                                              <label for="website" class="col-sm-2 col-form-label text-right">Website</label>
-                                              <div class="col-sm-10">
-                                                  <input class="form-control-lg form-control" type="text" placeholder="Enter Nama Website" id="website">
+                                              <label for="Rt" class="col-sm-1 col-form-label text-right">RT</label>
+                                              <div class="col-sm-2">
+                                                <input type="number" placeholder="Enter Rt" id="Rt" class="form-control form-control-lg">
+                                              </div>
+                                              <label for="Rw" class="col-sm-1 col-form-label text-right">RW</label>
+                                              <div class="col-sm-2">
+                                                <input type="number" placeholder="Enter Rw" class="form-control form-control-lg">
                                               </div>
                                           </div>
                                           <div class="form-group row">
-                                            <label for="noAkta" class="col-sm-2 col-form-label text-right">No. Akta Notaris</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control-lg form-control" type="tel" placeholder="Enter No. Akta Notaris" id="noAkta">
+                                            <label for="NoTelp" class="col-sm-2 col-form-label text-right">No.Telp</label>
+                                            <div class="col-sm-4">
+                                              <input type="number" placeholder="Enter No. Telp" id="NoTelp" class="form-control form-control-lg">
+                                            </div>
+                                            <label for="NoFax" class="col-sm-2 col-form-label text-right">No.Fax</label>
+                                            <div class="col-sm-4">
+                                              <input type="number" placeholder="Enter No. Fax" id="NoFax" class="form-control form-control-lg">
                                             </div>
                                           </div>
                                           <div class="form-group row">
-                                            <label for="noKemenkunham" class="col-sm-2 col-form-label text-right">No. Kemenkunham</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control-lg form-control" type="tel" placeholder="Enter No. Kemenkunham" id="noKemenkunham">
-                                            </div>
+                                              <label for="email" class="col-sm-2 col-form-label text-right">Email</label>
+                                              <div class="col-sm-4">
+                                                  <input class="form-control-lg form-control" type="email" placeholder="Enter Email" id="email">
+                                              </div>
+                                              <label for="website" class="col-sm-2 col-form-label text-right">Website</label>
+                                              <div class="col-sm-4">
+                                                  <input class="form-control-lg form-control" type="text" placeholder="Enter Website" id="website">
+                                              </div>
                                           </div>
                                           <div class="form-group row">
-                                            <label for="namaWakil" class="col-sm-2 col-form-label text-right">Nama Wakil</label>
+                                            <label for="NoWa" class="col-sm-2 col-form-label text-right">No. Wa</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control-lg form-control" type="text" placeholder="Enter Nama Wakil" id="namaWakil">
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label for="jabatan" class="col-sm-2 col-form-label text-right">Jabatan</label>
-                                            <div class="col-sm-10">
-                                              <input class="form-control-lg form-control" type="text" placeholder="Enter Jabatan" id="jabatan">
+                                              <input class="form-control-lg form-control" type="number" placeholder="Enter No. Wa" id="NoWa">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label for="npwp" class="col-sm-2 col-form-label text-right">NPWP</label>
-                                            <div class="col-sm-10">
-                                              <input class="form-control-lg form-control" type="tel" placeholder="Enter NPWP" id="npwp">
+                                            <div class="col-sm-4">
+                                              <input class="form-control-lg form-control" type="number" placeholder="Enter NPWP" id="npwp">
                                             </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label for="ketuaUmum" class="col-sm-2 col-form-label text-right">Ketua Umum</label>
-                                            <div class="col-sm-10">
-                                              <input class="form-control-lg form-control" type="text" placeholder="Enter Ketua Umum" id="ketuaUmum">
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
                                             <label for="nik" class="col-sm-2 col-form-label text-right">NIK</label>
-                                            <div class="col-sm-10">
+                                            <div class="col-sm-4">
                                               <input class="form-control-lg form-control" type="tel" placeholder="Enter Nik" id="nik">
                                             </div>
                                           </div>
                                           <div class="form-group row">
-                                            <label for="noHp" class="col-sm-2 col-form-label text-right">No. HP</label>
+                                              <label for="lahir" class="col-sm-2 col-form-label text-right">Tempat Lahir</label>
+                                              <div class="col-sm-4">
+                                                  <input class="form-control-lg form-control" type="text" placeholder="Enter Tempat Lahir" id="lahir">
+                                              </div>
+                                              <label for="tanggalLahir" class="col-sm-2 col-form-label text-right">Tanggal Lahir</label>
+                                              <div class="col-sm-4">
+                                                  <input class="form-control-lg form-control" type="text" placeholder="Enter Tanggal Lahir" id="tanggalLahir">
+                                              </div>
+                                          </div>
+                                          <div class="form-group row">
+                                              <label for="namaPerusahaan" class="col-sm-2 col-form-label text-right">Nama Perusahaan</label>
+                                              <div class="col-sm-4">
+                                                  <input class="form-control-lg form-control" type="text" placeholder="Enter Nama Perusahaan" id="namaPerusahaan">
+                                              </div>
+                                              <label for="emailPerusahaan" class="col-sm-2 col-form-label text-right">Email Perusahaan</label>
+                                              <div class="col-sm-4">
+                                                  <input class="form-control-lg form-control" type="email" placeholder="Enter Email Perusahaan" id="emailPerusahaan">
+                                              </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label for="alamatPerusahaan" class="col-sm-2 col-form-label text-right">Alamat Perusahaan</label>
                                             <div class="col-sm-10">
-                                              <input class="form-control-lg form-control" type="tel" placeholder="Enter No. HP" id="noHp">
+                                              <textarea class="form-control form-control-lg" rows="2" v-model="alamatPerusahaan" placeholder="Enter Alamat Perusahaan" id="alamatPerusahaan"></textarea>
                                             </div>
                                           </div>
-                                          <div class=" row form-group">
+                                          <div class="form-group row">
+                                            <label for="keahlian" class="col-sm-2 col-form-label text-right">Keahlian</label>
+                                            <div class="col-sm-4">
+                                              <input type="text" placeholder="Enter Keahlian" id="keahlian" class="form-control form-control-lg">
+                                            </div>
+                                            <label for="grup" class="col-sm-2 col-form-label text-right">Asosiasi</label>
+                                            <div class="col-sm-4">
+                                              <select class="form-control form-control-lg" v-model="asosiasis">
+                                                <option value="" selected> - Pilih Asosiasi - </option>
+                                                <option v-for="(item, index) in asosiasi" :key="index" :value="item.kode" >{{item.nama}}</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                          <!-- <div class=" row form-group">
                                             <label for="logoAsosiasi" class="col-sm-2 col-form-label text-right">Cek Logo Asosiasi</label>
                                             <div class="col-sm-3 ml-2">
-                                              <!-- <input type="file" class="custom-file-input" name="fileimage" id="fileimage"> -->
                                               <input type="file" class="custom-file-input" @change="clogoAsosiasi" id="logoAsosiasi">
                                               <label class="custom-file-label" for="logoAsosiasi">Choose file</label>
                                             </div>
@@ -212,7 +237,7 @@
                                             <div class="col-sm-2 imgpreview">
                                               <img :src="fnpwp" alt="">
                                             </div>
-                                          </div>
+                                          </div> -->
 
 
                                           <div class="form-group row">
@@ -225,6 +250,7 @@
                                         </div>
                                     </div>                                                                      
                                   </form>
+                                  <router-link to="/jembwt">a</router-link>
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div><!--end col-->
@@ -437,6 +463,12 @@ export default {
   },
   data() {
     return{
+      alamatPerusahaan: '',
+      asosiasis:'',
+      alamat: '',
+      desas: '',
+      kecamatans: '',
+      type: localStorage.type,
       images: [],
       flogoAsosiasi: '',
       NlogoAsosiasi: '',
@@ -444,11 +476,55 @@ export default {
       NaktaNotaris: '',
       fnpwp: '',
       NNpwp: '',
-      kategori: [],
+      kategories: '',
+      rayons: '',
+      provinsis: '',
+      kabupatens: '',
+    }
+  },
+  watch: {
+    provinsis(val) {
+      if (val != '') {
+        // this.kabupaten = 'cok'
+        const form = new FormData()
+        form.append('id', localStorage.id)
+        form.append('token', localStorage.token)
+        form.append('propinsi', this.provinsis)
+        this.$store.dispatch('postApi', {
+          url: 'getkabupaten.php',
+          mutation: 'GET_KAB',
+          data: form
+        })
+      }
+    },
+    kabupatens(val) {
+      if (val != '') {
+        const form = new FormData()
+        form.append('id', localStorage.id)
+        form.append('token', localStorage.token)
+        form.append('kabupaten', this.kabupatens)
+        this.$store.dispatch('postApi', {
+          url: 'getkecamatan.php',
+          mutation: 'GET_KECAMATAN',
+          data: form
+        })
+      }
+    },
+    kecamatans(val) {
+      if (val != '') {
+        const form = new FormData()
+        form.append('id', localStorage.id)
+        form.append('token', localStorage.token)
+        form.append('kecamatan', this.kecamatans)
+        this.$store.dispatch('postApi', {
+          url: 'getdesa.php',
+          mutation: 'GET_DESA',
+          data: form
+        })
+      }
     }
   },
   methods: {
-    
     caktaNotaris(e) {
       const file = e.target.files[0]
       const fr = new FileReader()
@@ -484,29 +560,37 @@ export default {
     }
   },
   computed: {
-    ...mapState(['rayon'])
+    ...mapState(['rayon']),
+    ...mapState(['provinsi']),
+    ...mapState(['kategori']),
+    ...mapState(['kabupaten']),
+    ...mapState(['kecamatan']),
+    ...mapState(['desa']),
+    ...mapState(['asosiasi'])
   },
-  // beforeCreate() {
-  //     const formData = new FormData();
-  //     formData.append('id', localStorage.id)
-  //     formData.append('token', localStorage.token)
-  //     Axios.post('https://devapi.octomoda.tech/getrayon.php', formData)
-  //       .then((res) => {
-  //         console.log(res.data.response.rayon)
-  //         this.rayon = res.data.response.rayon
-  //       })
-  //       .catch((err) => console.log(err))
-  // },
   mounted() {
-    const rayon = new FormData()
-    rayon.append('id', localStorage.id)
-    rayon.append('token', localStorage.token)
+    const form = new FormData()
+    form.append('id', localStorage.id)
+    form.append('token', localStorage.token)
     this.$store.dispatch('postApi', {
-      url: `getrayon.php`,
-      mutation: "GET_RAYON",
-      data: {
-        rayon
-      }
+      url: 'getrayon.php',
+      mutation: 'GET_RAYON',
+      data: form
+    })
+    this.$store.dispatch('postApi', {
+      url: 'getpropinsi.php',
+      mutation: 'GET_PROVINSI',
+      data: form
+    })
+    this.$store.dispatch('postApi', {
+      url: 'getkategori.php',
+      mutation: 'GET_KATEGORI',
+      data: form
+    })
+    this.$store.dispatch('postApi', {
+      url: 'getgrup.php',
+      mutation: 'GET_ASOSIASI',
+      data: form
     })
   }
 }

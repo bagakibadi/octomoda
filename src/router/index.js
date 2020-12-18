@@ -16,6 +16,11 @@ const routes = [
     component: () => import("../views/Login.vue")
   },
   {
+    path: "/logout",
+    name: "Logout",
+    component: () => import("../views/auth/Logout.vue")
+  },
+  {
     path: "/datarayon",
     name: "dashboard",
     component: () => import("../views/ContentDashboard.vue")
@@ -94,6 +99,11 @@ const routes = [
     path: '/kendaraan/sewa-kendaraan',
     name: 'Sewa Kendaraan',
     component: () => import("../views/SewaKendaraan.vue")
+  },
+  {
+    path: '/jembwt',
+    name: 'jwmbt',
+    component: () => import("../views/Test.vue")
   }
 ];
 

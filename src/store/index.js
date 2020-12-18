@@ -9,20 +9,32 @@ export default new Vuex.Store({
     provinsi: [],
     kabupaten: [],
     desa: [],
-    rayon: []
+    rayon: [],
+    kecamatan: [],
+    kategori: [],
+    asosiasi: []
   },
   mutations: {
+    GET_KATEGORI(state, data){
+      state.kategori = data.response.kategori
+    },
     GET_RAYON(state,data) {
       state.rayon = data.response.rayon
     },
     GET_PROVINSI(state, data) {
-      state.provinsi = data
+      state.provinsi = data.response.propinsi
     },
-    GET_KABUPATEN(state, data) {
-      state.kabupaten = data
+    GET_KAB(state, data) {
+      state.kabupaten = data.response.kabupaten
+    },
+    GET_KECAMATAN(state, data) {
+      state.kecamatan = data.response.kecamatan
     },
     GET_DESA(state, data) {
-      state.desa = data
+      state.desa = data.response.desa
+    },
+    GET_ASOSIASI(state, data) {
+      state.asosiasi = data.response.grup
     }
   },
   actions: {
@@ -43,6 +55,21 @@ export default new Vuex.Store({
         Axios.post(`${process.env.VUE_APP_API + proto.url}`, proto.data)
           .then((res) => {
             commit(proto.mutation, res.data)
+            resolve(res);
+          })
+          .catch((err) => {
+            reject(new Error(err));
+          });
+      });
+    },
+    postRayon({ commit }) {
+      return new Promise((resolve, reject) => {
+        const rayon = new FormData();
+        rayon.append('id', localStorage.id)
+        rayon.append('token', localStorage.token)
+        Axios.post(`${process.env.VUE_APP_API + 'getrayon.php'}`, rayon)
+          .then((res) => {
+            commit('GET_RAYON', res.data)
             resolve(res);
           })
           .catch((err) => {

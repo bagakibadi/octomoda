@@ -44,6 +44,20 @@
                         @submit.prevent="login"
                       >
                         <div class="form-group">
+                          <label for="tipeakun">Tipe Akun</label>
+                          <div class="input-group mb-3">
+                            <select name="tipeakun" v-model="jenis" id="tipeakun" required class="form-control">
+                              <option value="" selected >- Pilih Tipe Akun -</option>
+                              <option value="1">Octomoda</option>
+                              <option value="2">Asosiasi</option>
+                              <option value="3">DPW</option>
+                              <option value="4">DPC</option>
+                              <option value="5">Perusahaan</option>
+                              <option value="6">Profesional</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
                           <label for="username">Email</label>
                           <div class="input-group mb-3">
                             <input
@@ -92,14 +106,14 @@
                             </div>
                           </div>
                           <!--end col-->
-                          <div class="col-sm-6 text-right">
+                          <!-- <div class="col-sm-6 text-right">
                             <a
                               href="#"
                               class="text-muted font-13"
                               ><i class="dripicons-lock"></i> Forgot
                               password?</a
                             >
-                          </div>
+                          </div> -->
                           <!--end col-->
                         </div>
                         <!--end form-group-->
@@ -214,6 +228,7 @@ export default {
     return {
       email: null,
       password: null,
+      jenis: '',
     }
   },
   methods: {
@@ -221,6 +236,7 @@ export default {
       const formData = new FormData()
       formData.append('email', this.email)
       formData.append('sandi', this.password)
+      formData.append('jenis', this.jenis)
       axios.post('https://devapi.octomoda.tech/login.php', formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -237,10 +253,11 @@ export default {
               timer: 2000
             })
             setTimeout(() => {
-              if (res.data.response.status == '0') {
+              if (res.data.response.status == '1') {
                 localStorage.status = '0'
                 localStorage.token = res.data.response.token
                 localStorage.id = res.data.response.id
+                localStorage.type = res.data.response.jenis
                 this.$router.push('/profile')
               } else{
                 console.log("verifed")

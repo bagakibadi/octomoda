@@ -155,7 +155,7 @@ export default {
       otp3: null,
       otp4: null,
       otp5: null,
-      id: '20201201095433a08cw',
+      id: '',
       otp: null,
       result: 1,
       jenis: null,
@@ -249,7 +249,6 @@ export default {
           }
         })
         .catch((err) => {
-          
           console.log(err)
         })
     }
